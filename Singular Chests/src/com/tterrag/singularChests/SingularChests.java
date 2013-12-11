@@ -1,5 +1,7 @@
 package com.tterrag.singularChests;
 
+import net.minecraft.block.Block;
+
 import com.tterrag.singularChests.block.ModBlock;
 import com.tterrag.singularChests.config.ConfigHandler;
 import com.tterrag.singularChests.lib.Reference;
@@ -23,8 +25,6 @@ public class SingularChests {
 	public void preInit(FMLPreInitializationEvent event) {
 
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
-
-		ModBlock.init();
 	}
 
 	@EventHandler
@@ -35,6 +35,10 @@ public class SingularChests {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		
+		Block.blocksList[Block.chest.blockID] = null;
+		ModBlock.init();
+		Block.blocksList[Block.chest.blockID] = ModBlock.singularChest;
 
 	}
 }
