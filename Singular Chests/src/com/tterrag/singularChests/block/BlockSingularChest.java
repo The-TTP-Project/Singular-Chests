@@ -22,6 +22,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+
+import com.tterrag.singularChests.tile.TileSingularChest;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -140,11 +143,11 @@ public class BlockSingularChest extends BlockContainer{
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
 	{
 		super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-		TileEntityChest tileentitychest = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+		TileSingularChest tile = (TileSingularChest)par1World.getBlockTileEntity(par2, par3, par4);
 
-		if (tileentitychest != null)
+		if (tile != null)
 		{
-			tileentitychest.updateContainingBlockInfo();
+			tile.updateContainingBlockInfo();
 		}
 	}
 
@@ -155,13 +158,13 @@ public class BlockSingularChest extends BlockContainer{
 	 */
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
 	{
-		TileEntityChest tileentitychest = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+		TileSingularChest tile = (TileSingularChest)par1World.getBlockTileEntity(par2, par3, par4);
 
-		if (tileentitychest != null)
+		if (tile != null)
 		{
-			for (int j1 = 0; j1 < tileentitychest.getSizeInventory(); ++j1)
+			for (int j1 = 0; j1 < tile.getSizeInventory(); ++j1)
 			{
-				ItemStack itemstack = tileentitychest.getStackInSlot(j1);
+				ItemStack itemstack = tile.getStackInSlot(j1);
 
 				if (itemstack != null)
 				{
@@ -227,7 +230,7 @@ public class BlockSingularChest extends BlockContainer{
 	 */
 	public IInventory getInventory(World par1World, int par2, int par3, int par4)
 	{
-		Object object = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+		Object object = (TileSingularChest)par1World.getBlockTileEntity(par2, par3, par4);
 
 		if (object == null)
 		{
@@ -268,8 +271,8 @@ public class BlockSingularChest extends BlockContainer{
 	 */
 	public TileEntity createNewTileEntity(World par1World)
 	{
-		TileEntityChest tileentitychest = new TileEntityChest();
-		return tileentitychest;
+		TileSingularChest tile = new TileSingularChest();
+		return tile;
 	}
 
 	/**
@@ -293,7 +296,7 @@ public class BlockSingularChest extends BlockContainer{
 		}
 		else
 		{
-			int i1 = ((TileEntityChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
+			int i1 = ((TileSingularChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
 			return MathHelper.clamp_int(i1, 0, 15);
 		}
 	}
