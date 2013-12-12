@@ -252,46 +252,6 @@ public class TileSingularChest extends TileEntity implements IInventory
         this.adjacentChestChecked = false;
     }
 
-    private void func_90009_a(TileEntityChest par1TileEntityChest, int par2)
-    {
-        if (par1TileEntityChest.isInvalid())
-        {
-            this.adjacentChestChecked = false;
-        }
-        else if (this.adjacentChestChecked)
-        {
-            switch (par2)
-            {
-                case 0:
-                    if (this.adjacentChestZPosition != par1TileEntityChest)
-                    {
-                        this.adjacentChestChecked = false;
-                    }
-
-                    break;
-                case 1:
-                    if (this.adjacentChestXNeg != par1TileEntityChest)
-                    {
-                        this.adjacentChestChecked = false;
-                    }
-
-                    break;
-                case 2:
-                    if (this.adjacentChestZNeg != par1TileEntityChest)
-                    {
-                        this.adjacentChestChecked = false;
-                    }
-
-                    break;
-                case 3:
-                    if (this.adjacentChestXPos != par1TileEntityChest)
-                    {
-                        this.adjacentChestChecked = false;
-                    }
-            }
-        }
-    }
-
     /**
      * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
      * ticks and creates a new spawn inside its implementation.
