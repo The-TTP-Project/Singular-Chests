@@ -3,14 +3,15 @@ package com.tterrag.singularChests;
 import net.minecraft.block.Block;
 
 import com.tterrag.singularChests.block.ModBlock;
+import com.tterrag.singularChests.client.SingularChestRenderer;
 import com.tterrag.singularChests.config.ConfigHandler;
 import com.tterrag.singularChests.lib.Reference;
-import com.tterrag.singularChests.proxy.CommonProxy;
+import com.tterrag.singularChests.tile.TileSingularChest;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -25,6 +26,9 @@ public class SingularChests {
 	public void preInit(FMLPreInitializationEvent event) {
 
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileSingularChest.class, new SingularChestRenderer());
+		
 	}
 
 	@EventHandler
